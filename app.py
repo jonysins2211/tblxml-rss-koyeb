@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "✅ TamilMV RSS is live!"
+    return "✅ Tbl RSS is live!"
 
 @app.route('/tamilmv.xml')
 def rss():
@@ -22,7 +22,7 @@ if not os.path.exists("rss.xml"):
     with open("rss.xml", "w", encoding="utf-8") as f:
         f.write("""<rss version="2.0"><channel>
 <title>TamilBlasters Torrents</title>
-<link>https://www.1tamilblasters.com</link>
+<link>https://www.1tamilblasters.codes</link>
 <description>Waiting for update...</description>
 </channel></rss>""")
 
