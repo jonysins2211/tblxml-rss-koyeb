@@ -39,7 +39,7 @@ FORUMS = [
     "https://www.1tamilblasters.com/index.php?/forums/forum/92-english-web-series-tv-shows.xml"
 ]
 
-BASE_URL = "https://www.1tamilblasters.com"
+BASE_URL = "https://www.1tamilblasters.codes"
 SEEN_FILE = "seen.json"
 RSS_FILE = "rss.xml"
 INTERVAL = 60  # seconds
