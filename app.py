@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "✅ Tbl RSS is live!"
+    return "✅ TamilMV RSS is live!"
 
 @app.route('/tamilmv.xml')
 def rss():
@@ -17,17 +17,26 @@ def rss():
 def health():
     return "OK", 200
 
-# ✅ STEP: Ensure rss.xml exists
+# ✅ Ensure rss.xml exists
 if not os.path.exists("rss.xml"):
     with open("rss.xml", "w", encoding="utf-8") as f:
-        f.write("""<rss version="2.0"><channel>
+        f.write("""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
 <title>TamilBlasters Torrents</title>
 <link>https://www.1tamilblasters.codes</link>
 <description>Waiting for update...</description>
-</channel></rss>""")
+</channel>
+</rss>""")
 
-# ✅ Start scraper in background
-threading.Thread(target=scrape_loop, daemon=True).start()
+# ✅ Start scraper in background (only once)
+def start_scraper():
+    thread = threading.Thread(target=scrape_loop, daemon=True)
+    thread.start()
+
+start_scraper()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    # 🔥 IMPORTANT FIX FOR KOYEB
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host='0.0.0.0', port=port)
